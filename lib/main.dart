@@ -26,6 +26,13 @@ class _QuoteListState extends State<QuoteList> {
     Quote(author: "Aristotle", text: "Happiness depends upon ourselves."),
   ];
 
+  // Function to delete a quote
+  // deleteQuote(Quote quote) {
+  // setState(() {
+  // quotes.remove(quote); // Removes the quote from the list
+  // });
+  //}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,7 +43,15 @@ class _QuoteListState extends State<QuoteList> {
         backgroundColor: Colors.redAccent,
       ),
       body: Column(
-        children: quotes.map((quote) => QuoteCard(quote: quote)).toList(),
+        children: quotes
+            .map((quote) => QuoteCard(
+                quote: quote,
+                delete: () {
+                  setState(() {
+                    quotes.remove(quote); // Removes the quote from the list
+                  });
+                }))
+            .toList(), // Convert the Iterable to List
       ),
     );
   }
