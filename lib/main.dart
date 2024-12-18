@@ -16,10 +16,46 @@ class QuoteList extends StatefulWidget {
 
 class _QuoteListState extends State<QuoteList> {
   List<Quote> quotes = [
-    Quote(author: "Oscar Wilde", text: "Quote 1"),
-    Quote(author: "Oscar Wilde", text: "Quote 2"),
-    Quote(author: "Oscar Wilde", text: "Quote 3"),
+    Quote(
+        author: "Franklin D. Roosevelt",
+        text: "The only thing we have to fear is fear itself."),
+    Quote(
+        author: "Mahatma Gandhi",
+        text: "You must be the change you wish to see in the world."),
+    Quote(author: "Aristotle", text: "Happiness depends upon ourselves."),
   ];
+
+  Widget quoteTemplate(quote) {
+    return Card(
+      margin: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 0),
+      child: Padding(
+        // Main Axis goes down
+        // Cross Axis ->
+
+        padding: const EdgeInsets.all(12.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Text(
+              quote.text,
+              style: const TextStyle(
+                fontSize: 18.0,
+                color: Colors.grey,
+              ),
+            ),
+            const SizedBox(height: 10.0),
+            Text(
+              quote.author,
+              style: const TextStyle(
+                fontSize: 14.0,
+                color: Colors.grey,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,11 +67,7 @@ class _QuoteListState extends State<QuoteList> {
         backgroundColor: Colors.redAccent,
       ),
       body: Column(
-        children: quotes
-            .map(
-              (quote) => Text("${quote.text} - ${quote.author}"),
-            )
-            .toList(),
+        children: quotes.map((quote) => quoteTemplate(quote)).toList(),
       ),
     );
   }
