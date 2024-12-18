@@ -1,9 +1,9 @@
 class Quote {
-  String? text;
-  String? author;
+  String text;
+  String author;
 
   // Put curly braces, it means its named parameters
-  Quote({this.text, this.author});
+  Quote({required this.text, required this.author});
 }
 
 // Named Parameters
